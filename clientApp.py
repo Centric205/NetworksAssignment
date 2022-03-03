@@ -4,7 +4,7 @@ import threading
 serverName = "127.0.0.1"
 serverPort = 12000
 
-global nameG
+global nameG 
 
 def receive():
     clientSocket = socket(AF_INET, SOCK_DGRAM)
