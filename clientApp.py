@@ -4,13 +4,15 @@ import threading
 serverName = "127.0.0.1"
 serverPort = 12000
 
-global nameG 
+global nameG
 
 def receive():
     clientSocket = socket(AF_INET, SOCK_DGRAM)
     global nameG
     while True:  #loop will iterate until client chooses a unique name
         name = input("Enter name: ")
+        if len(name) == 0:
+            continue
         msg = "/knock knock" + name
         clientSocket.sendto(msg.encode(), (serverName, serverPort))
         message, address = clientSocket.recvfrom(2048)
@@ -32,6 +34,8 @@ def send():
     clientSocket.sendto(msg.encode(), (serverName, serverPort))
     while True:
         message = input("Message: ")
+        if len(message) == 0:
+            continue
         clientSocket.sendto(message.encode(), (serverName, serverPort))
 
 
